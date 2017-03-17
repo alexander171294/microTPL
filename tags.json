@@ -1,7 +1,7 @@
 [
 {
     "tag": "if",
-    "regex": "[^\"]+",
+    "regex": "[^\\\"]+",
     "php": "if($1){",
     "close": true,
     "close_php": "}"
@@ -14,21 +14,21 @@
 },
 {
     "tag": "loop",
-    "regex": "\$([a-zA-Z0-9_]*)(\-\>\[\')*(.*)\ as \$([a-zA-Z0-9_]*) to \$([a-zA-Z0-9_]*)",
-    "php": "foreach(\$$1$2$3 as \$$4 => \$$5){",
+    "regex": "\\$([a-zA-Z0-9_]*)(\\-\\>\\[\\')*(.*) as \\$([a-zA-Z0-9_]*) to \\$([a-zA-Z0-9_]*)",
+    "php": "foreach(\\$$1$2$3 as \\$$4 => \\$$5){",
     "close": true,
     "close_php": "}"
 },
 {
     "tag": "loop",
-    "regex": "\$([a-zA-Z0-9_]*)(\-\>\[\')*(.*)\ as \$([a-zA-Z0-9_]*)",
-    "php": "foreach(\$$1$2$3 as \$$4){",
+    "regex": "\\$([a-zA-Z0-9_]*)(\\-\\>\\[\\')*(.*) as \\$([a-zA-Z0-9_]*)",
+    "php": "foreach(\\$$1$2$3 as \\$$4){",
     "close": true,
     "close_php": "}"
 },
 {
     "tag": "dump",
-    "regex": "([^\"]+)",
+    "regex": "([^\\\"]+)",
     "php": "var_dump($1);",
     "close": false
 },
@@ -41,7 +41,7 @@
 },
 {
     "tag": "function",
-    "regex": "([^\"]+)",
+    "regex": "([^\\\"]+)",
     "php": "$1;",
     "close": false
 }

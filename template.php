@@ -57,7 +57,8 @@ class template
     {
         $tpl = file_get_contents($this->file);
         $tpl = $this->replaceDefaults($tpl);
-        $tags = json_parse(file_get_contents(__dir__.'/tags.json'));
+        $tags = json_decode(file_get_contents(__dir__.'/tags.json'));
+        var_dump($tags);
         $tpl = $this->replaceTags($tpl, $tags);
         @file_put_contents($this->cache, $tpl);
     }
