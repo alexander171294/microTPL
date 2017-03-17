@@ -1,7 +1,7 @@
 [
 {
     "tag": "if",
-    "regex": "[^\\\"]+",
+    "regex": "([^\\\"]+)",
     "php": "if($1){",
     "close": true,
     "close_php": "}"

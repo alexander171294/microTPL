@@ -58,8 +58,8 @@ class template
         $tpl = file_get_contents($this->file);
         $tpl = $this->replaceDefaults($tpl);
         $tags = json_decode(file_get_contents(__dir__.'/tags.json'));
-        var_dump($tags);
         $tpl = $this->replaceTags($tpl, $tags);
+        $tpl = $this->replaceImports($tpl);
         @file_put_contents($this->cache, $tpl);
     }
     
@@ -84,6 +84,7 @@ class template
             if(!empty($tag->regex)) $append = '="'.$tag->regex.'"';
             $realRegex = '/\{'.$tag->tag.$append.'\}/';
             $substitution = '<?php '.$tag->php.' ?>';
+            var_dump($realRegex, $substitution);
             $tpl = preg_replace($realRegex, $substitution, $tpl);
             if($tag->close)
             {
@@ -100,12 +101,13 @@ class template
         $matches = array();
         $regex = '/\{import="([^\"]+)"\}/';
         preg_match_all($regex, $tpl, $matches, PREG_OFFSET_CAPTURE);
+        var_dump($regex, $tpl);
         foreach($matches as $match)
         {
             $file = $match[1];
-            $tplObject = new template($file);
-            $repl = $tplObject->process();
-            $tpl = str_replace('{import="'.$file.'"}', '<?php require('.$repl.'); ?>', $tpl);
+            //$tplObject = new template($file);
+            //$repl = $tplObject->process();
+            /*$tpl = str_replace('{import="'.$file.'"}', '<?php require('.$repl.'); ?>', $tpl);*/
         }
     }
 }

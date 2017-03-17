@@ -4,6 +4,7 @@ require(__dir__.'/../template.php');
 
 template::$fileDir = __dir__.'/template';
 template::$cacheDir = __dir__.'/cache';
+template::$forceRecache = true;
 
 $template = new template('test');
 
