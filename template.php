@@ -26,12 +26,26 @@ class template
         $this->vars[$key] = $value;
     }
     
+    public function assignGroup($data)
+    {
+        foreach($data as $unique)
+        {
+            $this->vars[$unique['key']] = $unique['value'];
+        }
+    }
+    
     public function show()
     {
-        if(!$this->isCached) $this->parse();
+        $this->process();
         $_ = $this->vars;
         extract($_);
         include($this->cache);
+    }
+    
+    public function process()
+    {
+        if(!$this->isCached) $this->parse();
+        return $this->cache;
     }
     
     protected function isCached()
@@ -78,5 +92,19 @@ class template
             }
         }
         return $tpl;
+    }
+    
+    protected function replaceImports($tpl)
+    {
+        $matches = array();
+        $regex = '/\{import="([^\"]+)"\}/';
+        preg_match_all($regex, $tpl, $matches, PREG_OFFSET_CAPTURE);
+        foreach($matches as $match)
+        {
+            $file = $match[1];
+            $tplObject = new template($file);
+            $repl = $tplObject->process();
+            $tpl = str_replace('{import="'.$file.'"}', '<?php require('.$repl.'); ?>', $tpl);
+        }
     }
 }

@@ -28,14 +28,8 @@
 },
 {
     "tag": "dump",
-    "regex": "([^\"}]+)",
+    "regex": "([^\"]+)",
     "php": "var_dump($1);",
-    "close": false
-},
-{
-    "tag": "import",
-    "regex": "([^\"}]+)",
-    "php": "tpl_import($1);",
     "close": false
 },
 {
@@ -47,7 +41,7 @@
 },
 {
     "tag": "function",
-    "regex": "([^\"}]+)",
+    "regex": "([^\"]+)",
     "php": "$1;",
     "close": false
 }
