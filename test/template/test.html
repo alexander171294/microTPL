@@ -1,0 +1,15 @@
+<html>
+    <head>
+        {import="head"}
+    </head>
+    <body>
+        <h1>Test ok</h1>
+        <p>var: {$var}</p>
+        <h3>Loop:</h3>
+        <ul>
+            {loop="$test as $obj"}
+            <li>{$obj}</li>
+            {/loop}
+        </ul>
+    </body>
+</html>
