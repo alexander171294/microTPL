@@ -1,0 +1,54 @@
+[
+{
+    "tag": "if",
+    "regex": "[^\"]+",
+    "php": "if($1){",
+    "close": true,
+    "close_php": "}"
+},
+{
+    "tag": "else",
+    "regex": "",
+    "php": "} else {",
+    "close": false
+},
+{
+    "tag": "loop",
+    "regex": "\$([a-zA-Z0-9_]*)(\-\>\[\')*(.*)\ as \$([a-zA-Z0-9_]*) to \$([a-zA-Z0-9_]*)",
+    "php": "foreach(\$$1$2$3 as \$$4 => \$$5){",
+    "close": true,
+    "close_php": "}"
+},
+{
+    "tag": "loop",
+    "regex": "\$([a-zA-Z0-9_]*)(\-\>\[\')*(.*)\ as \$([a-zA-Z0-9_]*)",
+    "php": "foreach(\$$1$2$3 as \$$4){",
+    "close": true,
+    "close_php": "}"
+},
+{
+    "tag": "dump",
+    "regex": "([^\"}]+)",
+    "php": "var_dump($1);",
+    "close": false
+},
+{
+    "tag": "import",
+    "regex": "([^\"}]+)",
+    "php": "tpl_import($1);",
+    "close": false
+},
+{
+    "tag": "for",
+    "regex": "([0-9]+) end (<|>|<=|>=) ([0-9]+)",
+    "php": "for($key = $1; $key$2$3; $key++){",
+    "close": true,
+    "close_php": "}"
+},
+{
+    "tag": "function",
+    "regex": "([^\"}]+)",
+    "php": "$1;",
+    "close": false
+}
+]
